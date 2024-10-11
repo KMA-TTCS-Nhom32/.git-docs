@@ -1,197 +1,192 @@
-Welcome to the **Project** repository! This guide will walk you through the steps for setting up, collaborating, and contributing to this repository.
+Step by step to work with git 🔥:
 
-## Table of Contents
+## 🚀 Lưu ý:
 
-1. [Project Overview](#project-overview)
-2. [Getting Started](#getting-started)
-3. [Setting Up the Repository](#setting-up-the-repository)
-4. [Git Workflow](#git-workflow)
-5. [Collaborating with the Team](#collaborating-with-the-team)
-6. [Submitting a Pull Request](#submitting-a-pull-request)
-7. [Best Practices](#best-practices)
+- Không làm việc tại các branch main, stable, development. Hãy tạo branch mới, làm việc tại đó.
+- Cách đặt tên cho branch mới:
+  - Theo định dạng `<type>_<name>`.
+  - Với type là:
+    - Feature: Chức năng mới.
+    - Fix: Sửa lỗi.
+    - Refactor: Sửa lại định dạng, tổ chức lại code.
+    - Test: Kiểm, thử ...
+    - ...
+  - Và `name` là mô tả ngắn gọn cho mục tiêu
+  - (Ví dụ: `Feature_Auth_with_github` để thêm chức năng đăng nhập với github)
+- Thường xuyên [git pull](#1-lấy-code-từ-github) để cập nhât phiên bản mới nhất của code trên github. Đặc biệt trước mỗi khi làm việc và push code hãy chạy [git pull](#1-lấy-code-từ-github)
+- Xử lí [xung đột (conflict)](https://viblo.asia/p/lam-the-nao-de-han-che-conflict-khi-lam-viec-voi-git-djeZ1m8oZWz) sớm nhất có thể khi phát hiện
 
----
+## 🚀 Step to works:
 
-## Project Overview
+- Nếu **chưa** có repo, [clone repo](#1-lấy-code-từ-github) từ github
+- [Đã có repo, xác định điều cần làm (feature, fix, ...)](#🚀-lưu-ý)
+- **Không** sử dụng các branch `main`, `stable`, `development` để chỉnh sửa, hãy [tạo branch mới](#2-làm-việc-với-branch) và làm việc trên branch mới đó
+- Kiểm thử
+- [Commit](#3-commit) khi hoàn thành, và [push](#4-push) lên github
+- Tạo **[Pull Request](#5-tạo-pull-request)** và nhờ người khác review code, đánh giá, kiểm thử.
+- Chỉ tạo **[Pull Request](#5-tạo-pull-request)** để merge vào branch `development` hoặc branch khác mà không phải branch `main`, `stable`
 
-Brief description of the project, its goals, and what the repository contains.
+# 🔥 Bắt đầu nhanh
 
-## Getting Started
+### **1. Lấy code từ github:**
 
-### Prerequisites
+- Trường họp chưa có code trên máy:
+  - Clone git repository về máy bằng câu lệnh:
+  ```bash
+  git clone <link-to-repo>
+  ```
+  - Có thể đặt lại tên bằng cách thêm tên phía sau:
+  ```bash
+  git clone <link-to-repo> <name>
+  ```
+- Đã có code trên máy:
+  - Lấy code mới nhất trên github về:
+  ```bash
+  git pull
+  ```
 
-Before you begin, make sure you have the following installed on your machine:
+### **2. Làm việc với branch:**
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (or any other project-specific software)
-- [GitHub CLI (optional)](https://cli.github.com/)
-
-### Step 1: Fork the Repository
-
-If you don't have write access to the repository, fork it to your GitHub account.
-
-1. Go to the repository on GitHub.
-2. Click the **Fork** button in the upper right-hand corner.
-3. This creates a copy of the repository under your GitHub account.
-
-### Step 2: Clone the Repository
-
-1. Clone the forked repository to your local machine:
-
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
-   ```
-
-2. Navigate into the project directory:
-
-   ```bash
-   cd REPO-NAME
-   ```
-
-### Step 3: Add Upstream Remote
-
-To keep your local fork updated with the main repository, you need to add an upstream remote:
+- Kiểm tra branch:
 
 ```bash
-git remote add upstream https://github.com/ORIGINAL-OWNER/REPO-NAME.git
+git branch
 ```
 
-Verify the remote URLs:
+  <p align="center"><img src="./images/git-branch.PNG" alt="description of image" width="380px"></p>
+
+- Kiểm tra tất cả các branch:
 
 ```bash
-git remote -v
+git branch --all
 ```
 
-You should see both `origin` and `upstream` listed.
-
-## Setting Up the Repository
-
-### Install Project Dependencies
-
-After cloning the repository, install the required dependencies (if applicable, for example, if this is a Node.js project):
+- Tạo branch mới:
 
 ```bash
-npm install
+git branch <new_branch_name>
 ```
 
-### Set Up Environment Variables
-
-If your project requires environment variables, create a `.env` file:
+- Chuyển sang branch đã tồn tại:
 
 ```bash
-cp .env.example .env
+git checkout <branch_name>
 ```
 
-Fill in the necessary values in `.env`.
-
-## Git Workflow
-
-### Step 1: Create a New Branch
-
-Always work on a new branch. To create a branch:
+- Chuyển sang branch chưa tồn tại, và tự động tạo mới:
 
 ```bash
-git checkout -b feature/your-feature-name
+git checkout -b <new_branch_name>
 ```
 
-Replace `your-feature-name` with a descriptive name for the branch.
-
-### Step 2: Make Changes
-
-Now, make your changes in the appropriate files. Follow the project's coding standards and commit often.
-
-### Step 3: Stage and Commit Changes
-
-After making changes, stage the files and commit:
+  <p align="center">
+    <img src="./images/checkout-b.PNG" alt="description of image" width="420px">
+  </p>
+- Để xóa branch, cần phải checkout sang branch khác branch cần xóa sau đó:
 
 ```bash
-git add .
-git commit -m "Add meaningful commit message"
+# nếu branch đã merge vào branch nào đấy rồi
+git branch -d <branch_name_to_remove>
+
+# nếu branch chưa từng merge vào branch nào
+git branch -D <branch_name_to_remove>
 ```
 
-### Step 4: Push to Your Fork
+- Lần đầu clone code có thể sẽ thiếu các branch phụ, mà chỉ có branch chính, như sau:
+  <p align="center">
+    <img src="./images/first-clone.png" alt="description of image" width="420px">
+  </p>
 
-Push your changes to your fork on GitHub:
+- Cách xử lí, ví dụ muốn vào branch tên là `development`:
 
 ```bash
-git push origin feature/your-feature-name
+git switch <branch_to_switch>
+
+# ví dụ
+git switch development
 ```
 
-## Collaborating with the Team
+### **3. Commit:**
 
-### Syncing with Upstream
-
-Before starting a new feature or making changes, always ensure your local branch is up-to-date with the upstream repository.
-
-1. Fetch the latest changes from upstream:
-
-   ```bash
-   git fetch upstream
-   ```
-
-2. Merge changes into your branch:
-
-   ```bash
-   git checkout main
-   git merge upstream/main
-   ```
-
-3. If you were on a feature branch, rebase it with the updated `main`:
-
-   ```bash
-   git checkout feature/your-feature-name
-   git rebase main
-   ```
-
-## Submitting a Pull Request
-
-When you're ready to submit your work for review, follow these steps:
-
-### Step 1: Open a Pull Request
-
-1. Push your branch to your fork if you haven’t already:
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-2. Go to the GitHub repository in your browser.
-3. Click the **Compare & pull request** button.
-4. Fill in the necessary details, explaining what your feature/fix does.
-5. Submit the pull request to the **main** branch of the upstream repository.
-
-### Step 2: Wait for Code Review
-
-Your code will be reviewed by one or more maintainers. If changes are requested, make the changes locally, commit, and push them to your fork.
+- Để thêm các file muốn commit vào staged area. Bạn cũng có thể sử dụng git add . để thêm tất cả các thay đổi trong repository.
 
 ```bash
-git push origin feature/your-feature-name
+  git add <path-to-file>
+  #or
+  git add .
 ```
 
-This will automatically update the pull request.
+- Để kiểm tra trạng thái của staged area và các file trong working directory, sử dụng:
 
-## Best Practices
+```bash
+git status
+```
 
-- **Commit Messages**: Write meaningful, concise commit messages.
-- **Branch Names**: Use descriptive names like `feature/your-feature-name` or `bugfix/fix-bug-name`.
-- **Code Quality**: Follow coding standards and run tests before submitting your changes.
-- **Communication**: Use pull request descriptions to explain the purpose of your changes and any important details.
+- Để xem sự khác biệt giữa các file trong working directory và staged area, sử dụng:
 
----
+```bash
+git diff
+```
 
-### Additional Resources
+- Khi đã staged các file, để commit các file (Lưu ý rằng commit message cần phải rõ ràng và mô tả đầy đủ các thay đổi trong commit), sử dụng:
 
-- [GitHub Documentation](https://docs.github.com/en)
-- [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+```bash
+git commit -m "<commit_message>"
+```
 
-``
+- Nếu cần chỉnh sửa lại commit, sử dụng:
 
-### Key Sections:
-1. **Getting Started**: Prerequisites, forking, cloning, adding the upstream repository.
-2. **Git Workflow**: Explains how to create branches, commit changes, and push them.
-3. **Collaborating with the Team**: Instructions on syncing with the upstream repository.
-4. **Submitting a Pull Request**: Guide for opening pull requests and handling code review feedback.
-5. **Best Practices**: Suggestions on writing good commits, naming branches, and maintaining code quality.
+```bash
+git commit --amend
+```
 
-Feel free to modify any section to fit your team's workflow!
-``
+- Để xem lại lịch sử commit của repository, sử dụng:
+
+```bash
+git log
+```
+
+### **4. Push:**
+
+- Sau khi đã commit các thay đổi, bạn có thể đẩy chúng lên repository trên server bằng lệnh:
+
+```bash
+git push
+```
+
+- Lưu ý rằng trước khi push, bạn cần phải pull dữ liệu mới nhất từ server về bằng lệnh:
+
+```bash
+git pull
+```
+
+- Để đẩy các thay đổi lên branch hiện tại, sử dụng lệnh:
+
+```bash
+git push origin <branch_name>
+```
+
+- Nếu branch chưa được đẩy lên server trước đó, để đẩy branch và thiết lập upstream cho lần đẩy tiếp theo bạn có thể sử dụng lệnh:
+
+```bash
+git push --set-upstream origin <branch_name>
+```
+
+### **5. Tạo pull request:**
+
+- Sau khi push thành công, truy cập vào repo trên github:
+<p align="center">
+  <img src="./images/new-branch.PNG" alt="description of image" width="500px"></p>
+- Branch mới đã được push lên thành công, bấm vào branch vừa push, và chọn `Open Pull Request`:
+<p align="center">
+  <img src="./images/open-pull-request.PNG" alt="description of image" width="500px"></p>
+- Chuyển sang `development`, không được merge vào `main` trừ khi là hot fix:
+<p align="center">
+  <img src="./images/change-to-dev-branch.PNG" alt="description of image" width="500px"></p>
+- Điền tiltle và comment để mô tả mục đích của branch muốn merger, sau đó chọn `Create Pull Request`:
+<p align="center">
+  <img src="./images/create-pull-request.PNG" alt="description of image" width="500px"></p>
+
+### **6. Theo dõi Pull Request:**
+
+- Nhớ theo dõi Pull Request để thảo luận về code của bạn ... 🔥
