@@ -53,7 +53,7 @@ Step by step to work with git 🔥:
 git branch
 ```
 
-  <p align="center"><img src="./images/git-branch.PNG" alt="description of image" width="380px"></p>
+  <p align="center"><img src="./images/git-branch.png" alt="description of image" width="380px"></p>
 
 - Kiểm tra tất cả các branch:
 
@@ -80,7 +80,7 @@ git checkout -b <new_branch_name>
 ```
 
   <p align="center">
-    <img src="./images/checkout-b.PNG" alt="description of image" width="420px">
+    <img src="./images/checkout-b.png" alt="description of image" width="420px">
   </p>
 - Để xóa branch, cần phải checkout sang branch khác branch cần xóa sau đó:
 
@@ -176,16 +176,16 @@ git push --set-upstream origin <branch_name>
 
 - Sau khi push thành công, truy cập vào repo trên github:
 <p align="center">
-  <img src="./images/new-branch.PNG" alt="description of image" width="500px"></p>
+  <img src="./images/new-branch.png" alt="description of image" width="500px"></p>
 - Branch mới đã được push lên thành công, bấm vào branch vừa push, và chọn `Open Pull Request`:
 <p align="center">
-  <img src="./images/open-pull-request.PNG" alt="description of image" width="500px"></p>
+  <img src="./images/open-pull-request.png" alt="description of image" width="500px"></p>
 - Chuyển sang `development`, không được merge vào `main` trừ khi là hot fix:
 <p align="center">
-  <img src="./images/change-to-dev-branch.PNG" alt="description of image" width="500px"></p>
+  <img src="./images/change-to-dev-branch.png" alt="description of image" width="500px"></p>
 - Điền tiltle và comment để mô tả mục đích của branch muốn merger, sau đó chọn `Create Pull Request`:
 <p align="center">
-  <img src="./images/create-pull-request.PNG" alt="description of image" width="500px"></p>
+  <img src="./images/create-pull-request.png" alt="description of image" width="500px"></p>
 
 ### **6. Theo dõi Pull Request:**
 
